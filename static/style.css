@@ -1,0 +1,138 @@
+body{
+    
+    background-color: rgb(29,30,34);
+}
+*{
+    margin: 0;
+    box-sizing: border-box;
+
+}
+ html > ::-webkit-scrollbar{
+    display: none;
+} 
+
+.header{
+    width: 100%;
+    height: 120px;
+    border-bottom: 1.2px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    background-color: rgb(6, 6, 6);
+}
+.header p{
+    margin-left: 100px;
+    text-transform: capitalize;
+    
+}
+nav{
+    width: 70px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    border-left:2px solid #ddd ;
+    
+}
+nav i{
+    font-size: 30px;
+    color: white;
+
+}
+form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height:80vh;
+}
+
+.input-outout-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:80vh;
+    
+    
+    
+    /* border: 1px solid red; */
+}
+.input-area{
+    width: 45%;
+    height: 100%;
+    border-bottom: 2px solid #ddd;
+    border-right: 1px solid #ddd;
+    
+
+}
+textarea{
+    width: 100%;
+    height: 80vh;
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 10px;
+    font-size: 20px;
+    font-weight:500;
+    color: white;
+    overflow-y: scroll;
+}
+textarea::-webkit-scrollbar{
+   display: none;
+
+}
+/* options  */
+.options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    width: 10%;
+    height: 100%;
+  
+    border-bottom: 1px solid #ddd;
+    
+
+}
+.options .option{
+    width: 70%;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: rgb(6, 6, 6);
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+   
+
+    
+}
+.options .option i{
+    margin-left: 5px;
+}
+
+
+/* end options */
+.output-area{
+    width: 45%;
+    height: 100%;
+    border-left: 1px solid #ddd;
+    
+    border-bottom: 1px solid #ddd;
+}
+footer{
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    position: fixed;
+    bottom:-50% ;
+    right: 0;
+    left: 0;
+}

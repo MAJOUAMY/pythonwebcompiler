@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+   
+    <meta charset="utf-8" />
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>python compiler</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <script
+      src="https://kit.fontawesome.com/8137cd5dba.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div class="header" id="header">
+      <!-- should be a cote here -->
+      <div class="header-text">
+        <p>practice , practice , and practice</p>
+      </div>
+      
+      <nav class="contact-us">
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      </nav>
+    </div>
+
+    <div class="white-line"></div>
+    <div class="input-outout-container">
+      <form action="/runcode" method="post">
+        {% csrf_token %}
+      <div class="input-area">
+        
+<textarea type="text" name="codearea" id="codearea" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" onclick="setCursorPosition(event)">{{ code }}</textarea
+          >
+      
+      </div>
+      <div class="options">
+        <button class="option" type="submit">
+          Run<i class="fa-solid fa-play"></i>
+        </button>
+        
+      </div>
+      <div class="output-area"> 
+        <textarea type="text"  id="output" name="output" >{{ output }}</textarea>
+      </div>
+        </form>
+    </div>
+    <footer><p>contact-us</p></footer>
+
+    <script src="{% static 'main.css' %}"></script>
+  </body>
+</html>
