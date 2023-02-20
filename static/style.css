@@ -5,12 +5,33 @@ body{
 *{
     margin: 0;
     box-sizing: border-box;
+    
 
 }
  html > ::-webkit-scrollbar{
     display: none;
 } 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: transparent;
+}
+
+
+
+::-webkit-scrollbar-thumb {
+  background: rgba(211, 211, 211, 0.462); 
+  border-radius: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ddd; 
+}
 .header{
     width: 100%;
     height: 120px;
@@ -35,7 +56,7 @@ nav{
     align-items: center;
     justify-content: space-evenly;
     
-    border-left:2px solid #ddd ;
+    border-left:4px solid #ddd ;
     
 }
 nav i{
@@ -43,35 +64,28 @@ nav i{
     color: white;
 
 }
+
+
 form{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content:space-between;
-    height:80vh;
-}
-
-.input-outout-container{
-    display: flex;
-    align-items: center;
     justify-content: center;
     height:80vh;
-    
-    
+}    
     
     /* border: 1px solid red; */
-}
+
 .input-area{
     width: 45%;
     height: 100%;
-    border-bottom: 2px solid #ddd;
-    border-right: 1px solid #ddd;
+   border: 2px solid white;
     
 
 }
 textarea{
     width: 100%;
-    height: 80vh;
+    height: 100%;
     resize: none;
     border: none;
     outline: none;
@@ -82,7 +96,7 @@ textarea{
     color: white;
     overflow-y: scroll;
 }
-textarea::-webkit-scrollbar{
+html > ::-webkit-scrollbar{
    display: none;
 
 }
@@ -96,7 +110,7 @@ textarea::-webkit-scrollbar{
     width: 10%;
     height: 100%;
   
-    border-bottom: 1px solid #ddd;
+    border:2px solid white;
     
 
 }
@@ -123,16 +137,261 @@ textarea::-webkit-scrollbar{
 .output-area{
     width: 45%;
     height: 100%;
-    border-left: 1px solid #ddd;
+    border: 2px solid white;
+}
+
+
+/* design update with text hightlight */
+
+
+.input-area{
+    position: relative;
+}
+/* Please see the article */
+
+#editing, #highlighting {
+    /* Both elements need the same text and space styling so they are directly on top of each other */
     
-    border-bottom: 1px solid #ddd;
-}
-footer{
+    padding: 10px;
+    border: 0;
     width: 100%;
-    height: 60px;
-    background-color: black;
-    position: fixed;
-    bottom:-50% ;
-    right: 0;
+    height: 100%;
+    background-color: transparent;
+  }
+  #editing, #highlighting, #highlighting * {
+    /* Also add text styles to highlighing tokens */
+    font-size: 15pt;
+    font-family: monospace;
+    line-height: 20pt;
+    tab-size: 2;
+  }
+  
+  
+  #editing, #highlighting {
+    /* In the same place */
+    position: absolute;
+    
+    top: 0;
     left: 0;
-}
+  }
+  
+  
+  /* Move the textarea in front of the result */
+  
+  #editing {
+    
+    z-index: 1;
+  }
+  #highlighting {
+    z-index: 0;
+  }
+  
+  
+  /* Make textarea almost completely transparent */
+  
+  #editing {
+    color: transparent;
+    background: transparent;
+    caret-color: white; /* Or choose your favourite color */
+  }
+  
+  /* Can be scrolled */
+  #editing, #highlighting {
+    /* overflow: auto; */
+    width: 100%;
+    height: 100%;
+    white-space: nowrap; /* Allows textarea to scroll horizontally */
+  }
+  
+  /* No resize on textarea */
+  #editing {
+    resize: none;
+    
+  }
+  
+  /* Paragraphs; First Image */
+  * {
+    font-family: "Fira Code", monospace;
+  }
+  p code {
+    border-radius: 2px;
+    background-color: #eee;
+    color: #111;
+
+  }
+
+  
+  
+  /* Syntax Highlighting from prism.js starts below, partly modified: */
+  
+  /* PrismJS 1.23.0
+  https://prismjs.com/download.html#themes=prism-funky&languages=markup */
+  /**
+   * prism.js Funky theme
+   * Based on “Polyfilling the gaps” talk slides http://lea.verou.me/polyfilling-the-gaps/
+   * @author Lea Verou
+   */
+  
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+  
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+  
+  /* Code blocks */
+  pre[class*="language-"] {
+    /* padding: .4em .8em;
+    margin: .5em 0; */
+    overflow: auto;
+    /* background: url('data:image/svg+xml;charset=utf-8,<svg%20version%3D"1.1"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%20width%3D"100"%20height%3D"100"%20fill%3D"rgba(0%2C0%2C0%2C.2)">%0D%0A<polygon%20points%3D"0%2C50%2050%2C0%200%2C0"%20%2F>%0D%0A<polygon%20points%3D"0%2C100%2050%2C100%20100%2C50%20100%2C0"%20%2F>%0D%0A<%2Fsvg>');
+    background-size: 1em 1em; - WebCoder49*/
+    background: transparent; /* - WebCoder49 */
+  }
+  
+  code[class*="language-"] {
+    background: transparent;
+    width: 100%;
+    color: white;
+   
+  }
+  
+  /* Inline code */
+  :not(pre) > code[class*="language-"] {
+    padding: .2em;
+    border-radius: .3em;
+    box-shadow: none;
+    white-space: normal;
+  }
+  
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #aaa;
+  }
+  
+  .token.punctuation {
+    color: #999;
+  }
+  
+  .token.namespace {
+    opacity: .7;
+  }
+  
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol {
+    color: #0cf;
+  }
+  
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin {
+    color: yellow;
+  }
+  
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .token.variable,
+  .token.inserted {
+    color: yellowgreen;
+  }
+  
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: deeppink;
+  }
+  
+  .token.regex,
+  .token.important {
+    color: orange;
+  }
+  
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+  
+  .token.entity {
+    cursor: help;
+  }
+  
+  .token.deleted {
+    color: red;
+  }
+  
+  /* Plugin styles: Diff Highlight */
+  pre.diff-highlight.diff-highlight > code .token.deleted:not(.prefix),
+  pre > code.diff-highlight.diff-highlight .token.deleted:not(.prefix) {
+    background-color: rgba(255, 0, 0, .3);
+    display: inline;
+  }
+  
+  pre.diff-highlight.diff-highlight > code .token.inserted:not(.prefix),
+  pre > code.diff-highlight.diff-highlight .token.inserted:not(.prefix) {
+    background-color: rgba(0, 255, 128, .3);
+    display: inline;
+  }
+  
+  /* End of prism.js syntax highlighting*/
+
+@media screen and (max-width:850px){
+  body{
+    height: max-content;
+  }
+  form{
+      flex-direction: column;
+      justify-content: start;
+      height: 140vh;
+      
+    }
+    .input-area{
+      height:60%;
+      width: 100%;
+    }
+    .options{
+      padding: 10px 0px;
+      width: 100%;
+      height: 10vh;
+    }
+    .output-area{
+      width: 100%;
+      height: 600px;
+    }
+   nav{
+    display: none;
+   }
+   .input-area,.output-area{
+    border: 1px solid white ;
+   }
+    
+  }
+
+
+
